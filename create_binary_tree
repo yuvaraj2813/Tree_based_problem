@@ -1,0 +1,74 @@
+
+import java.util.*;
+class TreeNode{
+	int data;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int data)
+	{
+		this.data=data;
+		right=null;
+		left=null;
+	}
+}
+public class Binary_tree {
+	public static void insert(TreeNode root,int value)
+	{
+		TreeNode temp=new TreeNode(value);
+		if(root==null)
+		{
+			root=temp;
+			return;
+		}
+		
+		if(value<root.data)
+		{
+			if(root.left==null)
+			{
+				root.left=temp;
+			}
+			else
+			{
+				insert(root.left,value);
+			}
+		}
+		else
+		{
+			if(root.right==null)
+			{
+				root.right=temp;
+			}
+			else
+			{
+				insert(root.right,value);
+			}
+		}
+		
+		
+	}
+	public static void preorder(TreeNode n)
+	{
+		if(n==null)
+		{
+			return;
+		}
+		preorder(n.left);
+		System.out.print(n.data+" ");
+		preorder(n.right);
+		return;
+	}
+	
+	public static void main(String args[])
+	{
+		Scanner s=new Scanner(System.in);
+		TreeNode n=new TreeNode(30);
+		int size=s.nextInt();
+		while(size-->0)
+		{
+			int value=s.nextInt();
+			insert(n,value);
+		}
+		preorder(n);
+	}
+
+}
